@@ -1,0 +1,30 @@
+<%= form_for @user, url: admin_user_path(@user) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissabele">
+      <button type="" class="close" data-dismiss="alert" ariahidden="true">&times;</button>
+      <h4><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h4>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :name %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :admin %>
+    <%= f.check_box :admin, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.submit  class: "btn btn-primary" %>
+  </div>
+<% end %>

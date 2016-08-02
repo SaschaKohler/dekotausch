@@ -1,0 +1,20 @@
+%table.table-bordered.table-striped.table-condensed
+  %thead
+    %tr
+      %th Product
+      %th Picture
+      %th Description
+      %th Category
+      %th Action
+  %tbody
+    - Product.where(user_id: user_id).each do |p|
+      %tr
+        %td= p.title
+        %td= image_tag(Picture.picture_first_as_thumb(p.id))
+        %td= p.description
+        %td= Category.title_by_product_id(p.category_id)
+        %td= button_to "Edit", edit_product_path(p),class: 'btn btn-primary btn-success',:method => :get
+        %td= button_to "Delete", p , :data => { :confirm => "Are you sure?" }, :method => :delete,class: 'btn btn-primary btn-danger'
+
+
+%p= button_to 'Create Product',new_product_path,:method => :get,:class => 'btn btn-primary'

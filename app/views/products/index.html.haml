@@ -1,0 +1,14 @@
+
+.row
+  .col-md-6
+    = form_tag products_path, :method => 'get' do
+      .input-group
+      = select_tag "category_id", options_from_collection_for_select(Category.all, "id", "title"),:selected => "true",:onchange => 'this.form.submit();', class: 'form-control' 
+
+
+.row
+  .panel.panel-default
+    .panel-body
+      - @products.each do |product|
+        = render "product_row",product: product, order_item: @order_item
+

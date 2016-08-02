@@ -1,0 +1,70 @@
+%p= link_to "New User", new_admin_user_path,class: 'btn btn-primary btn-default'
+.row
+  %h4 Current Users:
+  %table.table-bordered.table-striped.table-condensed
+    %thead
+      %tr
+        %th Username
+        %th Email
+        %th signed in
+        %th last sign in
+        %th created at
+        %th updated at
+        %th provider
+        %th role
+        %th ---
+    %tbody
+      - @users.each do |user|
+        %tr
+          %td= user.name 
+          %td= user.email 
+          %td= user.sign_in_count 
+          %td= user.last_sign_in_at
+          %td= user.created_at 
+          %td= user.updated_at
+          %td= user.provider
+          - if user.admin 
+            %td administrator
+          - else
+            %td user
+          %td= link_to 'Edit', edit_admin_user_path(user)
+
+
+.row
+  %h4 Current Orders:
+  %table.table-bordered.table-striped.table-condensed
+    %thead
+      %tr
+        %th Id
+        %th Status
+        %th Owner
+        %th Items
+
+    %tbody
+      - @orders.each do |order|
+        %tr
+          %td= order.id
+          %td #{OrderStatus.find(order.order_status_id).name}
+          %td #{User.find(order.user_id).email}
+          %td
+            %ul
+            - order.order_items.each do |item|
+              %li #{item.id} #{Product.find(item.product_id).title}
+ 
+
+.row
+  %table.table-bordered.table-striped.table-condensed
+    %thead
+      %tr
+        %th Id
+        %th product id
+        %th order id
+    %tbody
+      - @order_items.each do |item|
+        %tr
+          %td= item.id
+          %td= item.product_id
+          %td= item.order_id
+
+
+

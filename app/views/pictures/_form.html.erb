@@ -1,0 +1,16 @@
+<%= form_for (@picture), :html => { :class => 'form-horizontal' } do |f| %>
+
+  
+    <%= image_tag @picture.image.url(:thumb), :id => 'cropbox' %>
+    <%= @picture.product.title %>
+  
+
+  <div class="form-actions">
+    <%= f.submit nil, :class => 'btn btn-primary  btn-mini' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                product_path(@product), :class => 'btn btn-mini' %>
+    <%= link_to 'Default', '', :class => 'btn btn-mini btn-success' , :id => 'make_default'%>
+
+  </div>
+<% end %>
+

@@ -1,0 +1,23 @@
+<%= form_for(@category) do |f| %>
+  <% if @category.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger alert-dismissabele">
+      <button type="" class="close" data-dismiss="alert" ariahidden="true">&times;</button>
+      <h4><%= pluralize(@category.errors.count, "error") %> prohibited this category from being saved:</h4>
+
+      <ul>
+      <% @category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-goup">
+    <%= f.label :title %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit  class: "btn btn-primary" %>
+  </div>
+<% end %>

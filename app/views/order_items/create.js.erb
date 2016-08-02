@@ -1,0 +1,9 @@
+<% if @order.errors.any? || @order_item.errors.any? %>
+alert("not valid.")
+<% else %>
+  $(".cart-text").html("<%= escape_javascript(render 'layouts/cart_text') %>")
+ 
+  $("#<%= "product-#{@order_item.product_id}" %>").prepend("<p class=\"alert alert-success\">Successfully added to Cart</p>")
+  $("#<%= "product-#{@order_item.product_id}" %> form").hide()
+<% end %>
+

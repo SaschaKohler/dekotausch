@@ -1,0 +1,22 @@
+ <div class="row">
+    <% @categories.each do |category| %>
+      <div class="col-md-3">
+	<div class="caption">
+        <h3><%= category.title %></h3>
+	<p><%= I18n.t 'actual'%> <%= pluralize(category.products.count," product") %></p>
+        <%= link_to 'Show', category, class: "btn btn-link" %>
+        <%= link_to 'Edit', edit_category_path(category), class: "btn btn-link" %>
+        <%= link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link" %>
+	</div>
+	</div>
+      
+
+    <% end %>
+  </div>
+
+<br>
+
+<%= link_to 'New Category', new_category_path, class: "btn btn-link"%>
+
+
+

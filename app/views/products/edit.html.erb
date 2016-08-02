@@ -1,0 +1,30 @@
+
+
+<%= render 'form' %>
+
+<div class="row">
+  <ul class="thumbnails files">
+<% if @pictures  %>
+  <% @pictures.each do |pic| %>
+    <li class="span3" id="picture_<%= pic.id %>">
+    <div class="thumbnail">
+      <%= image_tag pic.image.url(:medium) %>
+  
+      <div class="caption">
+        <p style="text-align: center;">
+  <p style="text-align: center;">
+                <%= link_to "Delete", pic,
+                  :data => { :confirm => "Are you sure?" },
+                  :method => :delete
+                %>
+
+        </p>
+      </div>
+    </div>
+    </li>
+  <% end %>
+<% end %>
+</ul>
+</div>
+<%= link_to 'Show', @product %> |
+<%= link_to 'Back', products_path %>
