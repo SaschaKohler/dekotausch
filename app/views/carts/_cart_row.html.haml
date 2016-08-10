@@ -4,17 +4,23 @@
       %h4= "Product: #{product.title}"
       %p= "Description: #{product.description}"
       %p= "Created by: #{User.find(user_id).email}"
+      %p= "#{current_order.id} / #{current_offer.id}"
       - if current_user && Product.where(user_id: current_user.id).first
         %table.table-bordered.table-striped.table-condensed
           %thead
             %tr
               %th Product
               %th Picture
+              %th Action
           %tbody
           - Product.where(user_id: current_user.id).each do |p|
             %tr
               %td= p.title
               %td= image_tag ( Picture.where(product_id: p.id).first.image.url(:thumb))
+              %td
+              / = f.hidden_field :product_id , value: p.id
+              / =f.hidden_field :offer_id , value: current_offer.id
+            
       - else
         %h4 Already Signed in? 
         %p Please Log In and add some products to your account.

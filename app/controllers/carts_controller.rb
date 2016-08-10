@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @order_items = current_order.order_items
-    @offer = Offer.all
+    @offer_items = current_offer.offer_items
   end
 
   def edit
