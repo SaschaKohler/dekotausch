@@ -10,6 +10,8 @@ class CartsController < ApplicationController
   def edit
     @order = Order.find(params[:id])
     session[:order_id] = @order.id
+    @offer = Offer.where(order_id:  @order.id).first
+    session[:offer_id] = @offer.id
     @order_items = @order.order_items
   end
   

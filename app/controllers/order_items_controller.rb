@@ -1,6 +1,7 @@
 class OrderItemsController < ApplicationController
   def create
     @order = current_order
+    @offer = current_offer
     @order_item = @order.order_items.new(order_item_params)
     @order.update_attribute(:user_id, current_user.id)
     if @order.save
@@ -9,6 +10,10 @@ class OrderItemsController < ApplicationController
         format.js {:flash}
       end
     end
+    @offer.update_attribute(:order_id, @order.id)
+    @offer.update_attribute(:user_id, current_user.id)
+    @offer.save
+    session[:offer_id] = @offer.id
     session[:order_id] = @order.id
   end
 
